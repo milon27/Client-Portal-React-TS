@@ -11,7 +11,8 @@ const Helper = {
         } else {
             return false;//invalid all field
         }
-    }//validateField
+    },//validateField
+
 }
 
 

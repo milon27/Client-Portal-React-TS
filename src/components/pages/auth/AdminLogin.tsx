@@ -14,16 +14,14 @@ import { StateContext } from './../../../utils/context/MainContext';
 import AlertLoading from "../../layouts/AlertLoading";
 import { Button } from "react-bootstrap";
 import { TypeClickEvent, TypeOnChange } from "../../../utils/interface/CommonInterface";
-import Helper from "../../../utils/Helper";
 
-const Register = () => {
+const AdminLogin = () => {
 
     const { app } = useContext(StateContext)
     const { appDispatch } = useContext(DispatchContext)
 
     //local state
     const initvalue = {
-        name: "",
         email: "",
         password: ""
     }
@@ -35,27 +33,27 @@ const Register = () => {
     const onSubmit = async (e: TypeClickEvent) => {
         e.preventDefault()
         const app = new AppAction(appDispatch!)
-        //Helper 
-        if (!Helper.validateField(user.name, user.email, user.password)) {
-            app.SET_RESPONSE(Response(false, "Enter Name Email And Password.", ColorType.DANGER))
-            return
-        }
         //ck password & confirm pass is same or not
         if (user.password.length <= 6) {
-            app.SET_RESPONSE(Response(false, "Password length should be at least 6 character.", ColorType.DANGER))
+            app.SET_RESPONSE(Response(false, "Password length should be more than 6 character.", ColorType.DANGER))
             return
         }
         //start loding..
         app.START_LOADING()
         //signup user
         try {
-            const response = await AxiosHelper.addData<User>('auth/signup', user)
+            const response = await AxiosHelper.addData<User>('auth/login', user)
             console.log(response)
-            if (response.obj) {
-                setcUser(response.obj)
-                //it will update state also update localstorage
+            if (response.success == true && response.obj) {
+                if (response.obj.is_admin === true) {
+                    setcUser(response.obj)
+                    //it will update state also update localstorage
+                } else {
+                    app.STOP_LOADING()
+                    throw new Error("No User Found.")
+                }
             } else {
-                app.SET_RESPONSE(Response(false, response.message, ColorType.DANGER))
+                app.SET_RESPONSE(Response(false, "Sign In failed." + response.message, ColorType.DANGER))
             }
             app.STOP_LOADING()
 
@@ -73,9 +71,6 @@ const Register = () => {
     // check alrady logged in or not
     //though we will update the state so it will re-run
     if (cUser?.id) {
-        if (cUser.is_admin === true) {
-            return <Redirect to={URL.ADMIN_HOME}></Redirect>
-        }
         return <Redirect to={URL.HOME}></Redirect>
     }
 
@@ -88,23 +83,21 @@ const Register = () => {
                             {/* <img src={logo} width={50} alt="" /> */}
                         </div>
                         <div className="d-flex justify-content-center">
-                            <h3>Register as a Client</h3>
+                            <h3>Sign In as Admin</h3>
                         </div>
                     </div>
 
                     <form onSubmit={onSubmit}>
-                        <Input name="name" type="text" title="Name" value={user.name} onChange={onChange} disable={app?.loading!} />
-
                         <Input name="email" type="email" title="Email" value={user.email} onChange={onChange} disable={app?.loading!} />
 
                         <Input name="password" type="password" title="Password" value={user.password} onChange={onChange} disable={app?.loading!} />
 
                         <AlertLoading loadColor={ColorType.INFO} />
 
-                        <Button variant="primary" type="submit" className="btn btn-dark btn-lg btn-block " >Register now</Button>
+                        <Button variant="primary" type="submit" className="btn btn-dark btn-lg btn-block " >Sign In</Button>
 
                         <p className="forgot-password text-right">
-                            Already registered, <Link to={URL.LOGIN}>Login Now</Link>
+                            Not Yet registered, <Link to={URL.REGISTER}>Register Now</Link>
                         </p>
                     </form>
                 </div>
@@ -113,5 +106,4 @@ const Register = () => {
     )
 }
 
-export default Register
-
+export default AdminLogin

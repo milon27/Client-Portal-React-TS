@@ -44,9 +44,11 @@ const Login = () => {
         try {
             const response = await AxiosHelper.addData<User>('auth/login', user)
             console.log(response)
-            if (response.obj) {
+            if (response.success === true && response.obj) {
                 setcUser(response.obj)
                 //it will update state also update localstorage
+            } else {
+                app.SET_RESPONSE(Response(false, response.message, ColorType.DANGER))
             }
             app.STOP_LOADING()
 
@@ -64,6 +66,9 @@ const Login = () => {
     // check alrady logged in or not
     //though we will update the state so it will re-run
     if (cUser?.id) {
+        if (cUser.is_admin === true) {
+            return <Redirect to={URL.ADMIN_HOME}></Redirect>
+        }
         return <Redirect to={URL.HOME}></Redirect>
     }
 

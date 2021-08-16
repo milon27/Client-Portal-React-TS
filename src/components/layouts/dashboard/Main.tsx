@@ -3,6 +3,9 @@ import ContentWrapper from './ContentWrapper'
 import Sidebar from './Sidebar'
 import LogoutModal from './LogoutModal';
 import { TypeReactChild } from '../../../utils/interface/CommonInterface';
+import useLocalStorage from './../../../utils/hooks/useLocalStorage';
+import Define from './../../../utils/Define';
+import User from '../../../utils/models/User';
 
 export interface iMain {
     title: string,
@@ -10,6 +13,9 @@ export interface iMain {
 }
 
 export default function Main({ children, title }: iMain) {
+
+    const [user, setUser] = useLocalStorage<User>(Define.AUTH_KEY)
+
     return (
         <div>
             {/* <!-- content start --> */}
@@ -17,7 +23,8 @@ export default function Main({ children, title }: iMain) {
             {/* <!-- Page Wrapper --> */}
             <div id="wrapper">
                 {/* <!-- Sidebar --> */}
-                <Sidebar />
+                {user?.is_admin === true ? <></> : <Sidebar />}
+
                 {/* <!-- EndofSidebar --> */}
                 {/* <!-- Content Wrapper --> */}
                 <ContentWrapper title={title}>

@@ -7,22 +7,21 @@ import Response, { ColorType, iResponse } from './../../models/Response';
 
 class ListAction<T> {
     dispatch: React.Dispatch<iListAction<T>>
-    source: CancelTokenSource = axios.CancelToken.source()
+    // source: CancelTokenSource = axios.CancelToken.source()
 
     constructor(dispatch: React.Dispatch<iListAction<T>>) {
         this.dispatch = dispatch;
     }
-    getSource = (): CancelTokenSource => {
-        this.source = axios.CancelToken.source();
-        return this.source;
+    static getSource = (): CancelTokenSource => {
+        return axios.CancelToken.source();
     }; //return token to cancel the request
 
     //get all data
-    getAll = async (url: string): Promise<iResponse> => {
+    getAll = async (url: string, source: CancelTokenSource): Promise<iResponse> => {
         return new Promise((resolve, reject) => {
             axios
                 .get(`${url}`, {
-                    cancelToken: this.source.token,
+                    cancelToken: source.token,
                 })
                 .then((res) => {
                     const { error, message, response } = res.data;
