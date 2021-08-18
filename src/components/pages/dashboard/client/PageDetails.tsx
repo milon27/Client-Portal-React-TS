@@ -41,6 +41,13 @@ const PageDetails = () => {
             source.cancel()
         }
     }, [page])
+
+    // useEffect(() => {
+    //     document.querySelector("iframe")?.addEventListener("load", (e) => {
+    //         console.log("loaded successfully.");
+    //     })
+    // }, [])
+
     return (
         <div>
             <Row>

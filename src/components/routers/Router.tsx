@@ -6,7 +6,8 @@ import URL from './../../utils/URL';
 import Login from './../pages/auth/Login';
 import Register from './../pages/auth/Register';
 import AdminHome from './../pages/dashboard/admin/AdminHome';
-import PageDetails from './../pages/dashboard/client/PageDetails';
+import PageList from './../pages/dashboard/admin/page/PageList';
+import FileList from './../pages/dashboard/admin/page/files/FileList';
 
 
 export default function Router() {
@@ -21,6 +22,11 @@ export default function Router() {
 
                 <Route exact path={URL.FILE + "/:id"} component={() => (<>file router.</>)}></Route>
 
+                {/* admin */}
+                {/* add page  */}
+                <Route exact path={`${URL.ADMIN_HOME}/page/:uid`} component={PageList} ></Route>
+                {/* add file for a page  */}
+                <Route exact path={`${URL.ADMIN_HOME}/page/:uid/:pid`} component={FileList} ></Route>
 
                 <Route component={NotFound}></Route>
             </Switch>

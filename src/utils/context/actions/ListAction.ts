@@ -28,6 +28,7 @@ class ListAction<T> {
                     if (error === false) {
                         //no error
                         //dispatch the global state
+                        // console.log("get all res-: ", response)
                         this.dispatch({
                             type: Types.GET_DATA,
                             payload: {
@@ -66,6 +67,7 @@ class ListAction<T> {
     }; //end get all(make sure you got a response (object type) )
     addData = (url: string, newdata: T): Promise<iResponse> => {
         return new Promise((resolve, reject) => {
+
             axios
                 .post(url, newdata)
                 .then((res) => {
@@ -75,7 +77,9 @@ class ListAction<T> {
                         //dispatch the global state
                         this.dispatch({
                             type: Types.ADD_DATA,
-                            payload: response, //a newly created object
+                            payload: {
+                                obj: response
+                            }, //a newly created object
                         });
 
                         resolve(

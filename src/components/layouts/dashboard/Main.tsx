@@ -6,6 +6,7 @@ import { TypeReactChild } from '../../../utils/interface/CommonInterface';
 import useLocalStorage from './../../../utils/hooks/useLocalStorage';
 import Define from './../../../utils/Define';
 import User from '../../../utils/models/User';
+import AdminSidebar from './AdminSidebar';
 
 export interface iMain {
     title: string,
@@ -23,7 +24,7 @@ export default function Main({ children, title }: iMain) {
             {/* <!-- Page Wrapper --> */}
             <div id="wrapper">
                 {/* <!-- Sidebar --> */}
-                {user?.is_admin === true ? <></> : <Sidebar />}
+                {user?.is_admin === true ? <AdminSidebar /> : <Sidebar />}
 
                 {/* <!-- EndofSidebar --> */}
                 {/* <!-- Content Wrapper --> */}

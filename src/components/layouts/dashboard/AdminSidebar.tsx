@@ -11,25 +11,7 @@ import Page from './../../../utils/models/Page';
 
 // const logo = require('../../../assets/img/logo.svg')
 //logo.default
-export default function Sidebar() {
-    //load all pages for client
-    const { pagelist } = useContext(StateContext)
-    const { pagelistDispatch, setPage } = useContext(DispatchContext)
-    useEffect(() => {
-        const source = ListAction.getSource()
-        const load = async () => {
-            await new ListAction<Page>(pagelistDispatch!).getAll('client/get-pages/', source)
-        }
-        load()
-        return () => {
-            source.cancel()
-        }
-    }, [])
-
-    useEffect(() => {
-        if (setPage && pagelist && pagelist[0])
-            setPage(pagelist[0].id)
-    }, [pagelist?.length])
+export default function AdminSidebar() {
 
     return (
         <>
@@ -68,19 +50,15 @@ export default function Sidebar() {
                 </li> */}
                 <hr className="sidebar-divider d-none d-md-block" />
                 <div className="sidebar-heading">
-                    Your Pages
+                    Options
                 </div>
-                {pagelist?.map(item => {
-                    return <li key={item.id} className="nav-item" onClick={() => {
-                        if (setPage)
-                            setPage(item.id)
-                    }}>
-                        <NavLink exact className="nav-link" to={URL.HOME}>
-                            <i className="fas fa-fw fa-award"></i>
-                            <span>{item.title}</span>
-                        </NavLink>
-                    </li>
-                })}
+
+                <li className="nav-item ">
+                    <NavLink exact activeClassName="active" className="nav-link " to="/dashboard">
+                        <i className="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </NavLink>
+                </li>
 
                 {/* <!-- Sidebar Toggler (Sidebar) --> */}
                 <div className="text-center d-none d-md-inline mt-2">

@@ -19,6 +19,7 @@ const Define = {
     //db 
     NOT_SET_STR: "",
     NOT_SET_INT: -1,
+    TOTAL_PAGE_SIZE: 10,
 }
 
 export default Define
