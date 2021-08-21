@@ -8,9 +8,9 @@ import { useState } from 'react';
 import AlertLoading from "../../../../../layouts/AlertLoading";
 import { ColorType } from "../../../../../../utils/models/Response";
 import { DispatchContext, StateContext } from './../../../../../../utils/context/MainContext';
-import PageFile from './../../../../../../utils/models/PageFile';
 import AppAction from "../../../../../../utils/context/actions/AppAction";
-import FileModal from "./FileModal";
+import FileModal from './FileModal';
+import PageFile from './../../../../../../utils/models/PageFile';
 
 const FileList = () => {
     const { uid, pid } = useParams<{ uid: string, pid: string }>()
