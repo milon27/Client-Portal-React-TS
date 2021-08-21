@@ -12,15 +12,12 @@ import AppAction from './../../../../../utils/context/actions/AppAction';
 interface iPageModal {
     show: boolean,
     setShow: TypeSetState<boolean>,
-    uid: number
+    page: Page,
+    setPage: TypeSetState<Page>
 }
 
 
-const PageModal: React.FC<iPageModal> = ({ show, setShow, uid }) => {
-
-
-    const init = new Page(-1, uid, "", "", "", "")
-    const [page, setPage] = useState<Page>(init);
+const PageModal: React.FC<iPageModal> = ({ show, setShow, page, setPage }) => {
 
     const { app } = useContext(StateContext)
     const { pagelistDispatch, appDispatch } = useContext(DispatchContext)
@@ -32,11 +29,21 @@ const PageModal: React.FC<iPageModal> = ({ show, setShow, uid }) => {
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         const myapp = new AppAction(appDispatch!)
-        myapp.START_LOADING()
-        setShow(false)
-        const result = await new ListAction<Page>(pagelistDispatch!).addData('client/create-page/', page)
-        myapp.SET_RESPONSE(result)
-        myapp.STOP_LOADING()
+
+        if (page.id === -1) {
+            myapp.START_LOADING()
+            setShow(false)
+            const result = await new ListAction<Page>(pagelistDispatch!).addData('client/create-page/', page)
+            myapp.SET_RESPONSE(result)
+            myapp.STOP_LOADING()
+        } else {
+            //update value
+            myapp.START_LOADING()
+            setShow(false)
+            const result = await new ListAction<Page>(pagelistDispatch!).updateData('admin/update/page', page, "id")
+            myapp.SET_RESPONSE(result)
+            myapp.STOP_LOADING()
+        }
     }
 
 

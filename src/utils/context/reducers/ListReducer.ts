@@ -31,6 +31,11 @@ const ListReducer = <T>(state: T[], action: iListAction<T>) => {
             return state.map((itm: any) => {
                 const id_field = action.payload.id_field
                 const obj = action.payload.obj as any
+
+
+                console.log("udpate reducer ck value=", itm[id_field!], obj[id_field!])
+                console.log("udpate reducer ck compare value=", itm[id_field!] === obj[id_field!])
+
                 if (itm[id_field!] === obj[id_field!]) {
                     return obj;
                 } else {

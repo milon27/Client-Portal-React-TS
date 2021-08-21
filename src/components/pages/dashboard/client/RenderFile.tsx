@@ -7,7 +7,7 @@ import AxiosHelper from './../../../../utils/AxiosHelper';
 
 
 function getExt(file: string) {
-    var regexp = /\.([0-9a-z]+)(?:[\?#]|$)/i;
+    var regexp = /\.([0-9a-z]+)(?:[?#]|$)/i;
     var extension = file.match(regexp);
     return extension && extension[1];
 }

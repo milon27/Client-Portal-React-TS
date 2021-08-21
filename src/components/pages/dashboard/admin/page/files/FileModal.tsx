@@ -8,17 +8,16 @@ import { StateContext } from './../../../../../../utils/context/MainContext';
 import AppAction from './../../../../../../utils/context/actions/AppAction';
 import PageFile from './../../../../../../utils/models/PageFile';
 
+
 interface iFileModal {
     show: boolean,
     setShow: TypeSetState<boolean>,
-    pid: number
+    file: PageFile,
+    setFile: TypeSetState<PageFile>
 }
 
+const FileModal: React.FC<iFileModal> = ({ show, setShow, file, setFile }) => {
 
-const FileModal: React.FC<iFileModal> = ({ show, setShow, pid }) => {
-
-    const init = new PageFile(-1, pid, "", "")
-    const [file, setFile] = useState<PageFile>(init);
     const [img, setImg] = useState<any>()
 
     const { app } = useContext(StateContext)
@@ -37,21 +36,49 @@ const FileModal: React.FC<iFileModal> = ({ show, setShow, pid }) => {
 
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-
         const myapp = new AppAction(appDispatch!)
-        myapp.START_LOADING()
-        setShow(false)
 
-        const ob = new FormData()
-        ob.append('img', img, img.name)
-        ob.append('pid', file.pid.toString())
-        ob.append('title', file.title)
+        if (file.id === -1) {
+            //add new file
+            myapp.START_LOADING()
+            setShow(false)
 
-        const result = await new ListAction<PageFile | any>(filelistDispatch!).addData('client/create-file', ob)
-        console.log("result:-> ", result);
+            const ob = new FormData()
+            if (img) {
+                ob.append('img', img, img.name)
+            }
+            ob.append('pid', file.pid.toString())
+            ob.append('title', file.title)
 
-        myapp.SET_RESPONSE(result)
-        myapp.STOP_LOADING()
+            const result = await new ListAction<PageFile | any>(filelistDispatch!).addData('client/create-file', ob)
+            console.log("result:-> ", result);
+
+            myapp.SET_RESPONSE(result)
+            myapp.STOP_LOADING()
+        } else {
+            myapp.START_LOADING()
+            setShow(false)
+
+            const ob = new FormData()
+            if (img) {
+                ob.append('img', img, img.name)
+            }
+            ob.append('id', file.id.toString())
+
+            // ob.append('pid', file.pid.toString())//no need to change it should remail same
+            ob.append('title', file.title)
+            ob.append('old_url', file.url)
+
+            const result = await new ListAction<PageFile | any>(filelistDispatch!).updateData('admin/update/file', ob, "id")
+            console.log("result:-> ", result);
+
+            myapp.SET_RESPONSE(result)
+            myapp.STOP_LOADING()
+        }
+
+
+
+
     }
 
 

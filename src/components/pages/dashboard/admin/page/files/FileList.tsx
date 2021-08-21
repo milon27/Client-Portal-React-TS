@@ -35,8 +35,17 @@ const FileList = () => {
 
     //local state
     const [show, setShow] = useState(false)
+    const [initFile, setInitFile] = useState(new PageFile(-1, parseInt(pid), "", ""))
 
     //local method
+    const updatePageFile = (file: PageFile) => {
+        //populate the item
+        setInitFile(file)
+        //show the modal
+        setShow(true)
+    }
+
+
     const fileDelete = async (file: PageFile) => {
 
         const ok = window.confirm("are you sure to delete?")
@@ -53,7 +62,7 @@ const FileList = () => {
         <ProtectedPage>
 
             <Main title="Dashboard">
-                <FileModal show={show} setShow={setShow} pid={parseInt(pid)} />
+                <FileModal show={show} setShow={setShow} file={initFile} setFile={setInitFile} />
                 <Row>
                     <Col className="d-flex justify-content-center mb-3">
                         <AlertLoading loadColor={ColorType.INFO} />
@@ -87,7 +96,9 @@ const FileList = () => {
                                             <td>
                                                 <button
                                                     className="btn text-info  bg-transparent"
-                                                    onClick={() => { }}
+                                                    onClick={() => {
+                                                        updatePageFile(item)
+                                                    }}
                                                 >
                                                     <i className="far fa-edit"></i>
                                                 </button>

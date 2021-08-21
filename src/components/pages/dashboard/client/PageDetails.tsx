@@ -62,13 +62,13 @@ const PageDetails = () => {
                             <h3>Data Box Date</h3>
                             <div>
                                 {details?.data_one !== Define.NOT_SET_STR ? <>
-                                    <iframe frameBorder="1" allowFullScreen src={details?.data_one} width={"100%"} height={"350px"}></iframe>
+                                    <iframe title="one" frameBorder="1" allowFullScreen src={details?.data_one} width={"100%"} height={"350px"}></iframe>
                                 </> : <></>}
                                 {details?.data_two !== Define.NOT_SET_STR ? <>
-                                    <iframe frameBorder="1" allowFullScreen src={details?.data_two} width={"100%"} height={"350px"}></iframe>
+                                    <iframe title="two" frameBorder="1" allowFullScreen src={details?.data_two} width={"100%"} height={"350px"}></iframe>
                                 </> : <></>}
                                 {details?.data_three !== Define.NOT_SET_STR ? <>
-                                    <iframe frameBorder="1" allowFullScreen src={details?.data_three} width={"100%"} height={"350px"}></iframe>
+                                    <iframe title="three" frameBorder="1" allowFullScreen src={details?.data_three} width={"100%"} height={"350px"}></iframe>
                                 </> : <></>}
                             </div>
                         </Col>

@@ -36,9 +36,17 @@ const PageList = () => {
 
     //local state
     const [show, setShow] = useState(false)
+    const [initPage, setInitPage] = useState(new Page(-1, parseInt(uid), "", "", "", ""))
 
 
     //local method
+    const updatePage = (page: Page) => {
+        //populate the item
+        setInitPage(page)
+        //show the modal
+        setShow(true)
+    }
+
     const pageDelete = async (page: Page) => {
 
         const ok = window.confirm("are you sure to delete?")
@@ -55,8 +63,8 @@ const PageList = () => {
         <ProtectedPage>
 
             <Main title="Dashboard">
-                <PageModal show={show} setShow={setShow} uid={parseInt(uid)} />
-                <Row >
+                <PageModal show={show} setShow={setShow} page={initPage} setPage={setInitPage} />
+                < Row >
                     <Col className="d-flex justify-content-center mb-3">
                         <AlertLoading loadColor={ColorType.INFO} />
                     </Col>
@@ -95,7 +103,9 @@ const PageList = () => {
                                                 </Link>
                                                 <button
                                                     className="btn text-info  bg-transparent"
-                                                    onClick={() => { }}
+                                                    onClick={() => {
+                                                        updatePage(item)
+                                                    }}
                                                 >
                                                     <i className="far fa-edit"></i>
                                                 </button>

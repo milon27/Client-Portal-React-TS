@@ -102,14 +102,14 @@ class ListAction<T> {
         return new Promise((resolve, reject) => {
             axios.put(url, updateData).then((res) => {
                 const { error, message, response } = res.data
-                // console.log("after update: ", res.data);
+                console.log("after update: ", res.data);
                 if (error === false) {
                     //dispatch the global state
                     this.dispatch({
                         type: Types.UPDATE_DATA,
                         payload: {
                             id_field: id_field,
-                            obj: updateData
+                            obj: response
                         }
                     });
                     resolve(Response(true, "update success", ColorType.SUCCESS));
