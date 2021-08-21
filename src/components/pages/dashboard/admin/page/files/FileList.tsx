@@ -35,7 +35,8 @@ const FileList = () => {
 
     //local state
     const [show, setShow] = useState(false)
-    const [initFile, setInitFile] = useState(new PageFile(-1, parseInt(pid), "", ""))
+    const init = new PageFile(-1, parseInt(pid), "", "")
+    const [initFile, setInitFile] = useState(init)
 
     //local method
     const updatePageFile = (file: PageFile) => {
@@ -70,7 +71,10 @@ const FileList = () => {
                 </Row>
                 <Row>
                     <Col className="d-flex justify-content-end mb-3">
-                        <Button onClick={() => { setShow(true) }}>Add New File</Button>
+                        <Button onClick={() => {
+                            setInitFile(init)
+                            setShow(true)
+                        }}>Add New File</Button>
                     </Col>
                 </Row>
                 <Row>

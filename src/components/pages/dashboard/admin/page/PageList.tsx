@@ -36,7 +36,8 @@ const PageList = () => {
 
     //local state
     const [show, setShow] = useState(false)
-    const [initPage, setInitPage] = useState(new Page(-1, parseInt(uid), "", "", "", ""))
+    const pinit = new Page(-1, parseInt(uid), "", "", "", "")
+    const [initPage, setInitPage] = useState(pinit)
 
 
     //local method
@@ -71,7 +72,10 @@ const PageList = () => {
                 </Row>
                 <Row >
                     <Col className="d-flex justify-content-end mb-3">
-                        <Button onClick={() => { setShow(true) }}>Add New Page</Button>
+                        <Button onClick={() => {
+                            setInitPage(pinit)
+                            setShow(true)
+                        }}>Add New Page</Button>
                     </Col>
                 </Row>
                 <Row>

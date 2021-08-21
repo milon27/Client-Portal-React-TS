@@ -99,6 +99,7 @@ const FileModal: React.FC<iFileModal> = ({ show, setShow, file, setFile }) => {
                     disable={app?.loading!}
                     type="text"
                 />
+                <label htmlFor="">Upload File (image,pdf,doc) max upload size: 5mb</label>
                 <input type="file" onChange={onChangeFile} />
 
                 {/* <Input

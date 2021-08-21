@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import URL from './../../../utils/URL';
 //global.d.ts
-import logo from '../../../assets/img/logo.svg'
+import logo from '../../../assets/img/logo.png'
 import { useEffect } from 'react';
 import ListAction from './../../../utils/context/actions/ListAction';
 import { DispatchContext } from '../../../utils/context/MainContext';
@@ -20,10 +20,10 @@ export default function AdminSidebar() {
                 {/* <!-- Sidebar - Brand --> */}
                 <a className="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                     {/* rotate-n-15 */}
-                    <div className="sidebar-brand-icon ">
-                        <img src={logo} style={{ width: "100%", height: "50px" }} alt="" />
+                    <div className="sidebar-brand-icon bg-white rounded">
+                        <img src={logo} style={{ width: "100%", height: "60px" }} alt="" />
                     </div>
-                    <div className="sidebar-brand-text "><sup>Client Portal</sup></div>
+                    {/* <div className="sidebar-brand-text "><sup>Client Portal</sup></div> */}
                 </a>
                 {/* <!-- Divider --> */}
                 {/* <hr className="sidebar-divider my-0" />

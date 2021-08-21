@@ -54,12 +54,12 @@ const RenderFile: FC<iRenderFile> = (item) => {
 
     if (getExt(item.url) === "png" || getExt(item.url) === "jpg" || getExt(item.url) === "jpeg") {
         return <SingleImg img={IMG_IMG} extention={getExt(item.url) + ""} item={item} />
-    } else if (getExt(item.url) === "docx") {
+    } else if (getExt(item.url) === "docx" || getExt(item.url) === "doc") {
         return <SingleImg img={DOC_IMG} extention={getExt(item.url) + ""} item={item} />
     } else if (getExt(item.url) === "pdf") {
         return <SingleImg img={PDF_IMG} extention={getExt(item.url) + ""} item={item} />
     } else {
-        return <>File Type Not Supported!</>
+        return <SingleImg img={PDF_IMG} extention={getExt(item.url) + ""} item={item} />
     }
 }
 

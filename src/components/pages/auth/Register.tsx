@@ -16,6 +16,9 @@ import { Button } from "react-bootstrap";
 import { TypeClickEvent, TypeOnChange } from "../../../utils/interface/CommonInterface";
 import Helper from "../../../utils/Helper";
 
+
+import logo from '../../../assets/img/logo.png'
+
 const Register = () => {
 
     const { app } = useContext(StateContext)
@@ -85,10 +88,10 @@ const Register = () => {
                 <div className="inner">
                     <div className="d-flex flex-column">
                         <div className="d-flex justify-content-center mb-2">
-                            {/* <img src={logo} width={50} alt="" /> */}
+                            <img src={logo} width={'52%'} alt="" />
                         </div>
                         <div className="d-flex justify-content-center">
-                            <h3>Register</h3>
+                            <h3>Register Now</h3>
                         </div>
                     </div>
 
