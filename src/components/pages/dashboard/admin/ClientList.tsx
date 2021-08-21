@@ -5,6 +5,8 @@ import { DispatchContext, StateContext } from './../../../../utils/context/MainC
 import ListAction from './../../../../utils/context/actions/ListAction';
 import ClientTable from './ClientTable';
 import Define from './../../../../utils/Define';
+import AlertLoading from '../../../layouts/AlertLoading';
+import { ColorType } from '../../../../utils/models/Response';
 
 const ClientList = () => {
     const { clientlist } = useContext(StateContext)
@@ -49,7 +51,7 @@ const ClientList = () => {
             <>
                 <Row >
                     <Col className="d-flex justify-content-center mb-3">
-                        {/* <AlertLoading loadColor={Define.BT_DANGER} /> */}
+                        <AlertLoading loadColor={ColorType.INFO} />
                     </Col>
                 </Row>
                 <Row >

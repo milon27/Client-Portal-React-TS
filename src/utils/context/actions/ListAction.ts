@@ -124,10 +124,12 @@ class ListAction<T> {
         });
     } //end update data
     // Delete Data
-    deleteData = (url: string, id_field: string, obj: T): Promise<iResponse> => {
+    deleteData = (url: string, id_field: string, obj: T, body?: object): Promise<iResponse> => {
         return new Promise((resolve, reject) => {
             axios
-                .delete(url)
+                .delete(url, {
+                    data: body
+                })
                 .then((res) => {
                     const { error, message, response } = res.data;
                     if (error === false) {

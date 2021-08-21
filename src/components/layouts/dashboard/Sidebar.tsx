@@ -81,6 +81,14 @@ export default function Sidebar() {
                         </NavLink>
                     </li>
                 })}
+                {pagelist?.length! < 1 ?
+                    <li className="nav-item ">
+                        <NavLink exact activeClassName="active" className="nav-link " to="/">
+                            <i className="fas fa-fw fa-tachometer-alt"></i>
+                            <span>No Page Found</span>
+                        </NavLink>
+                    </li>
+                    : ""}
 
                 {/* <!-- Sidebar Toggler (Sidebar) --> */}
                 <div className="text-center d-none d-md-inline mt-2">

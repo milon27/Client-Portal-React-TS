@@ -4,6 +4,8 @@ const Helper = {
         const n_arr = arr.filter(itm => {
             if (itm && itm !== null && itm !== undefined) {
                 return true
+            } else {
+                return false
             }
         })
         if (n_arr.length === arr.length) {

@@ -11,11 +11,12 @@ import { useState } from 'react';
 import AlertLoading from "../../../../layouts/AlertLoading";
 import { ColorType } from "../../../../../utils/models/Response";
 import URL from './../../../../../utils/URL';
+import AppAction from "../../../../../utils/context/actions/AppAction";
 
 const PageList = () => {
     const { uid } = useParams<{ uid: string }>()
     const { pagelist } = useContext(StateContext)
-    const { pagelistDispatch } = useContext(DispatchContext)
+    const { pagelistDispatch, appDispatch } = useContext(DispatchContext)
 
     //load all pages for a client
     useEffect(() => {
@@ -35,6 +36,20 @@ const PageList = () => {
 
     //local state
     const [show, setShow] = useState(false)
+
+
+    //local method
+    const pageDelete = async (page: Page) => {
+
+        const ok = window.confirm("are you sure to delete?")
+        if (ok) {
+            const appA = new AppAction(appDispatch!)
+            appA.START_LOADING()
+            //admin/delete/user/:uid
+            await new ListAction(pagelistDispatch!).deleteData(`admin/delete/page/${page.id}`, "id", page)
+            appA.STOP_LOADING()
+        }
+    }
 
     return (
         <ProtectedPage>
@@ -86,7 +101,9 @@ const PageList = () => {
                                                 </button>
                                                 <button
                                                     className="btn text-info  bg-transparent"
-                                                    onClick={() => { }}
+                                                    onClick={() => {
+                                                        pageDelete(item)
+                                                    }}
                                                 >
                                                     <i className="far fa-trash-alt"></i>
                                                 </button>

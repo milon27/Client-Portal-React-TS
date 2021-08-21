@@ -15,7 +15,7 @@ const ListReducer = <T>(state: T[], action: iListAction<T>) => {
         case Types.GET_DATA:
             return [...action.payload.arr!]; //return an array
         case Types.ADD_DATA:
-            return [action.payload.obj, ...state]; //return array with new object
+            return [...state, action.payload.obj]; //return array with new object
         case Types.UPDATE_DATA:
             //use case
             /**
@@ -52,11 +52,20 @@ const ListReducer = <T>(state: T[], action: iListAction<T>) => {
              * })
              */
 
-            return state.filter((Deletedata: any) => {
-                const id_field = action.payload.id_field
-                const obj = action.payload.obj as any
-                return Deletedata[id_field!] === obj[id_field!]
+            let id_field = action.payload.id_field!
+            let myobj = action.payload.obj as any
+
+            let newste = state.filter((item: any) => {
+
+                // console.log("delete reducer ck compare value=", item[id_field] === myobj[id_field])
+
+                if (item[id_field] === myobj[id_field]) {
+                    return false
+                } else {
+                    return true
+                }
             });
+            return newste
         default:
             return state; //default arry
     }

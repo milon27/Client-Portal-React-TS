@@ -1,21 +1,21 @@
 import { Button, Col, Row, Table } from "react-bootstrap"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import Main from "../../../../../layouts/dashboard/Main"
 import ProtectedPage from "../../../../../layouts/ProtectedPage"
 import { useContext, useEffect } from 'react';
 import ListAction from "../../../../../../utils/context/actions/ListAction";
-import PageModal from "../PageModal";
 import { useState } from 'react';
 import AlertLoading from "../../../../../layouts/AlertLoading";
 import { ColorType } from "../../../../../../utils/models/Response";
 import { DispatchContext, StateContext } from './../../../../../../utils/context/MainContext';
 import PageFile from './../../../../../../utils/models/PageFile';
-import FileModal from './FileModal';
+import AppAction from "../../../../../../utils/context/actions/AppAction";
+import FileModal from "./FileModal";
 
 const FileList = () => {
     const { uid, pid } = useParams<{ uid: string, pid: string }>()
     const { filelist } = useContext(StateContext)
-    const { filelistDispatch } = useContext(DispatchContext)
+    const { filelistDispatch, appDispatch } = useContext(DispatchContext)
 
     //load all pages for a client
     useEffect(() => {
@@ -35,6 +35,19 @@ const FileList = () => {
 
     //local state
     const [show, setShow] = useState(false)
+
+    //local method
+    const fileDelete = async (file: PageFile) => {
+
+        const ok = window.confirm("are you sure to delete?")
+        if (ok) {
+            const appA = new AppAction(appDispatch!)
+            appA.START_LOADING()
+            //admin/delete/user/:uid
+            await new ListAction(filelistDispatch!).deleteData(`admin/delete/file/${file.id}`, "id", file, { old_url: file.url })
+            appA.STOP_LOADING()
+        }
+    }
 
     return (
         <ProtectedPage>
@@ -80,7 +93,9 @@ const FileList = () => {
                                                 </button>
                                                 <button
                                                     className="btn text-info  bg-transparent"
-                                                    onClick={() => { }}
+                                                    onClick={() => {
+                                                        fileDelete(item)
+                                                    }}
                                                 >
                                                     <i className="far fa-trash-alt"></i>
                                                 </button>

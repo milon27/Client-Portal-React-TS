@@ -65,7 +65,7 @@ const FileModal: React.FC<iFileModal> = ({ show, setShow, pid }) => {
             >
                 <Input
                     name="title"
-                    title="Page Title"
+                    title="File Title"
                     value={file.title}
                     onChange={onChange}
                     disable={app?.loading!}

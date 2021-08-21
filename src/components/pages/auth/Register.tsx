@@ -88,7 +88,7 @@ const Register = () => {
                             {/* <img src={logo} width={50} alt="" /> */}
                         </div>
                         <div className="d-flex justify-content-center">
-                            <h3>Register as a Client</h3>
+                            <h3>Register</h3>
                         </div>
                     </div>
 

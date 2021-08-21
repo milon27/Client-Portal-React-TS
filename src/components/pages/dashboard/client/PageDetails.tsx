@@ -32,7 +32,6 @@ const PageDetails = () => {
         const source = AxiosHelper.getSource()
         const load = async () => {
             const result = await AxiosHelper.getData<PageFile>(`client/get-files/${page}`, source)
-            console.log("ok", result);
             if (result.success === true)
                 setDetails(result.obj)
         }
@@ -42,11 +41,6 @@ const PageDetails = () => {
         }
     }, [page])
 
-    // useEffect(() => {
-    //     document.querySelector("iframe")?.addEventListener("load", (e) => {
-    //         console.log("loaded successfully.");
-    //     })
-    // }, [])
 
     return (
         <div>

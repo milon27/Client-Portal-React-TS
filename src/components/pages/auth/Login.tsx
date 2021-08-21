@@ -81,7 +81,7 @@ const Login = () => {
                             {/* <img src={logo} width={50} alt="" /> */}
                         </div>
                         <div className="d-flex justify-content-center">
-                            <h3>Sign In as a Client</h3>
+                            <h3>Sign In</h3>
                         </div>
                     </div>
 
