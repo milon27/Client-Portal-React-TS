@@ -6,12 +6,12 @@ import { useContext, useEffect } from 'react';
 import { DispatchContext, StateContext } from './../../../../../utils/context/MainContext';
 import ListAction from "../../../../../utils/context/actions/ListAction";
 import Page from './../../../../../utils/models/Page';
-import PageModal from "./PageModal";
 import { useState } from 'react';
 import AlertLoading from "../../../../layouts/AlertLoading";
 import { ColorType } from "../../../../../utils/models/Response";
 import URL from './../../../../../utils/URL';
 import AppAction from "../../../../../utils/context/actions/AppAction";
+import PageModal from './PageModal';
 
 const PageList = () => {
     const { uid } = useParams<{ uid: string }>()
