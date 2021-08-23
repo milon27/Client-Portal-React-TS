@@ -18,9 +18,12 @@ step 3: run : npm start (by default it will run on http://localhost:3000/)
 setp 4: make your dream project.
 ```
 
-> Screenshot
+> Project Screenshot & Video Description url: 
 
-![screenshot](Screenshot.png)
+[![Everything Is AWESOME](Screenshot.png)](https://youtu.be/OkiNZkpUgiU "Everything Is AWESOME")
+
+<br><br>
+
 
 ---
 ## Author @ milon27
