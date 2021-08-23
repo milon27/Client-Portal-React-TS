@@ -18,7 +18,7 @@ step 3: run : npm start (by default it will run on http://localhost:3000/)
 setp 4: make your dream project.
 ```
 
-> Project Screenshot & Video Description url: 
+> Project Screenshot & Video Description url: [Watch Full Project](https://youtu.be/OkiNZkpUgiU)
 
 [![Watch Full Project](Screenshot.png)](https://youtu.be/OkiNZkpUgiU "Watch Full Project")
 
