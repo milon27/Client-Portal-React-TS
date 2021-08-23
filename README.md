@@ -20,7 +20,7 @@ setp 4: make your dream project.
 
 > Project Screenshot & Video Description url: 
 
-[![Everything Is AWESOME](Screenshot.png)](https://youtu.be/OkiNZkpUgiU "Everything Is AWESOME")
+[![Watch Full Project](Screenshot.png)](https://youtu.be/OkiNZkpUgiU "Watch Full Project")
 
 <br><br>
 
