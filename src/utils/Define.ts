@@ -1,6 +1,6 @@
 const Define = {
     AUTH_KEY: "AUTH_CURRENT",
-    API_BASE_URL: "https://api.lighter.host/",//https://api.lighter.host/ http://localhost:2727/
+    API_BASE_URL: "http://localhost:2727/",//https://api.lighter.host/ http://localhost:2727/
     //time format
     FORMAT_DATE: "DD-MM-YYYY, hh:mm A",
     //bootstrap color

@@ -11,16 +11,16 @@ function DataBoxList({ one, two, three }: iDataBoxList) {
         <Row>
             <Col>
                 {one !== Define.NOT_SET_STR ? <>
-                    <iframe title="one" frameBorder="1" allowFullScreen src={one} width={"100%"} height={"400px"}></iframe>
+                    <iframe title="one" frameBorder="1" allowFullScreen src={one} width={"100%"} height={"670px"}></iframe>
                 </> : <></>}
 
 
                 {two !== Define.NOT_SET_STR ? <>
-                    <iframe title="two" frameBorder="1" allowFullScreen src={two} width={"100%"} height={"400px"}></iframe>
+                    <iframe title="two" frameBorder="1" allowFullScreen src={two} width={"100%"} height={"670px"}></iframe>
                 </> : <></>}
 
                 {three !== Define.NOT_SET_STR ? <>
-                    <iframe title="three" frameBorder="1" allowFullScreen src={three} width={"100%"} height={"400px"}></iframe>
+                    <iframe title="three" frameBorder="1" allowFullScreen src={three} width={"100%"} height={"670px"}></iframe>
                 </> : <></>}
             </Col>
 

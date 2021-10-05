@@ -65,6 +65,14 @@ code {
    .nav-tabs .nav-link:hover{
      border: 1px solid #0f243c;
    }
+
+  .fixed-logout{
+	  position: fixed;
+	  bottom: 0;
+	  min-width: 190px;
+	  overflow: hidden !important;
+   }
+
 } 
 
 
