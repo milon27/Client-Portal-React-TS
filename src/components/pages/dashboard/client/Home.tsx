@@ -8,10 +8,12 @@ import URL from './../../../../utils/URL';
 import { Redirect } from 'react-router-dom';
 import { useContext } from 'react';
 import { StateContext } from './../../../../utils/context/MainContext';
+import { useState } from 'react';
 
 
 const Home = () => {
     //send to admin if he is not client
+    const [pageTitle, setPageTitle] = useState<string>("Dashboard")
     const [user, setUser] = useLocalStorage<User>(Define.AUTH_KEY)
     const { pagelist } = useContext(StateContext)
 
@@ -23,10 +25,10 @@ const Home = () => {
 
     return (
         <ProtectedPage>
-            <Main title="Dashboard">
+            <Main title={pageTitle}>
                 {pagelist?.length! < 1 ?
                     <h1>No Page Found!Please Wait.</h1>
-                    : <PageDetails />}
+                    : <PageDetails setPageTitle={setPageTitle} />}
 
             </Main>
         </ProtectedPage>

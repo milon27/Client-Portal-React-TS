@@ -19,7 +19,7 @@ const AdminHome = () => {
     }
     return (
         <ProtectedPage>
-            <Main title="Dashboard">
+            <Main title="Dashaboard">
                 <ClientList />
             </Main>
         </ProtectedPage>

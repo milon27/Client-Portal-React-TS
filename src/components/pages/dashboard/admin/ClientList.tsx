@@ -38,7 +38,7 @@ const ClientList = () => {
     useEffect(() => {
         const source = ListAction.getSource()
         const load = async () => {
-            await new ListAction<User>(clientlistDispatch!).getAll('client/all/' + page, source)
+            await new ListAction<User>(clientlistDispatch!).getAll('admin/all-client/' + page, source)
         }
         load()
         return () => {

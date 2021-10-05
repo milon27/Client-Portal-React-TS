@@ -1,28 +1,35 @@
-import { useContext, useEffect } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect } from 'react';
 import { StateContext } from './../../../../utils/context/MainContext';
 import AxiosHelper from './../../../../utils/AxiosHelper';
 import { useState } from 'react';
 import { Col, Row } from "react-bootstrap";
 import RenderFile from './RenderFile';
 import Define from './../../../../utils/Define';
+import PageTab from './PageTab';
 
 
-interface PageFile {
+export interface PageFile {
     id: number
     uid: number
     title: string
+    title_sidebar: string
+    icon: string
     data_one: string
     data_two: string
     data_three: string
     files: {
         id: number,
         title: string,
+        description: string,
         url: string
     }[]
 }
 
 
-const PageDetails = () => {
+interface iPageDetails {
+    setPageTitle: Dispatch<SetStateAction<string>>
+}
+const PageDetails = ({ setPageTitle }: iPageDetails) => {
 
     const { page } = useContext(StateContext)
 
@@ -31,9 +38,12 @@ const PageDetails = () => {
     useEffect(() => {
         const source = AxiosHelper.getSource()
         const load = async () => {
-            const result = await AxiosHelper.getData<PageFile>(`client/get-files/${page}`, source)
-            if (result.success === true)
+            const result = await AxiosHelper.getData<PageFile>(`page/get-files/${page}`, source)
+            if (result.success === true) {
                 setDetails(result.obj)
+                setPageTitle(result.obj?.title + "")
+            }
+
         }
         load()
         return () => {
@@ -45,6 +55,11 @@ const PageDetails = () => {
     return (
         <div>
             <Row>
+                <Col>
+                    <PageTab content={details!} />
+                </Col>
+            </Row>
+            {/* <Row>
 
                 {details?.data_one === Define.NOT_SET_STR && details?.data_two === Define.NOT_SET_STR && details?.data_three === Define.NOT_SET_STR ? <>
                     <Col>
@@ -83,7 +98,7 @@ const PageDetails = () => {
                         </Col>
                     </>
                 }
-            </Row>
+            </Row> */}
         </div>
     )
 }

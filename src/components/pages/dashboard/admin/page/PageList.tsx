@@ -22,8 +22,8 @@ const PageList = () => {
     useEffect(() => {
         const source = ListAction.getSource()
         const load = async () => {
-            //http://localhost:2727/client/get-pages?cid=1
-            await new ListAction<Page>(pagelistDispatch!).getAll('client/get-pages?cid=' + uid, source)
+            //http://localhost:2727/page/get-pages?cid=1
+            await new ListAction<Page>(pagelistDispatch!).getAll('page/get-pages?cid=' + uid, source)
 
             // const res = await AxiosHelper.getData('client/get-pages?cid=' + uid, source)
             // console.log("test", res)
@@ -36,7 +36,7 @@ const PageList = () => {
 
     //local state
     const [show, setShow] = useState(false)
-    const pinit = new Page(-1, parseInt(uid), "", "", "", "")
+    const pinit = new Page(-1, parseInt(uid), "", "", "", "", "", "")
     const [initPage, setInitPage] = useState(pinit)
 
 
@@ -54,8 +54,8 @@ const PageList = () => {
         if (ok) {
             const appA = new AppAction(appDispatch!)
             appA.START_LOADING()
-            //admin/delete/user/:uid
-            await new ListAction(pagelistDispatch!).deleteData(`admin/delete/page/${page.id}`, "id", page)
+            //page/delete/page/:pid
+            await new ListAction(pagelistDispatch!).deleteData(`page/delete/page/${page.id}`, "id", page)
             appA.STOP_LOADING()
         }
     }
@@ -84,8 +84,10 @@ const PageList = () => {
                         < Table striped bordered hover responsive >
                             <thead>
                                 <tr>
-                                    <th>ID#</th>
+                                    <th>ID</th>
+                                    <th>Icon</th>
                                     <th>Page Title</th>
+                                    <th>Sidebar Title</th>
                                     <th>Data One URL</th>
                                     <th>Data Two URL</th>
                                     <th>Data Three URL</th>
@@ -97,10 +99,12 @@ const PageList = () => {
                                     return (
                                         <tr key={item.id}>
                                             <td>{item.id}</td>
+                                            <td><i className={item.icon}></i></td>
                                             <td>{item.title}</td>
-                                            <td>{item.data_one.length > 25 ? item.data_one.slice(0, 25) + "..." : item.data_one}</td>
-                                            <td>{item.data_two.length > 25 ? item.data_two.slice(0, 25) + "..." : item.data_two}</td>
-                                            <td>{item.data_three.length > 25 ? item.data_three.slice(0, 25) + "..." : item.data_three}</td>
+                                            <td>{item.title_sidebar}</td>
+                                            <td>{item.data_one.length > 20 ? item.data_one.slice(0, 20) + "..." : item.data_one}</td>
+                                            <td>{item.data_two.length > 20 ? item.data_two.slice(0, 20) + "..." : item.data_two}</td>
+                                            <td>{item.data_three.length > 20 ? item.data_three.slice(0, 20) + "..." : item.data_three}</td>
                                             <td>
                                                 <Link to={`${URL.ADMIN_HOME}/page/${item.uid}/${item.id}`} className="btn text-info bg-transparent">
                                                     Add File

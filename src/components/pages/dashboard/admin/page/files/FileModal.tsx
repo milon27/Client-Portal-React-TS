@@ -50,8 +50,9 @@ const FileModal: React.FC<iFileModal> = ({ show, setShow, file, setFile }) => {
             }
             ob.append('pid', file.pid.toString())
             ob.append('title', file.title)
+            ob.append('description', file.description)
 
-            const result = await new ListAction<PageFile | any>(filelistDispatch!).addData('client/create-file', ob)
+            const result = await new ListAction<PageFile | any>(filelistDispatch!).addData('file/create-file', ob)
             console.log("result:-> ", result);
 
             myapp.SET_RESPONSE(result)
@@ -68,9 +69,10 @@ const FileModal: React.FC<iFileModal> = ({ show, setShow, file, setFile }) => {
 
             // ob.append('pid', file.pid.toString())//no need to change it should remail same
             ob.append('title', file.title)
+            ob.append('description', file.description)
             ob.append('old_url', file.url)
 
-            const result = await new ListAction<PageFile | any>(filelistDispatch!).updateData('admin/update/file', ob, "id")
+            const result = await new ListAction<PageFile | any>(filelistDispatch!).updateData('file/update/file', ob, "id")
             console.log("result:-> ", result);
 
             myapp.SET_RESPONSE(result)
@@ -99,6 +101,16 @@ const FileModal: React.FC<iFileModal> = ({ show, setShow, file, setFile }) => {
                     disable={app?.loading!}
                     type="text"
                 />
+
+                <Input
+                    name="description"
+                    title="File Description"
+                    value={file.description}
+                    onChange={onChange}
+                    disable={app?.loading!}
+                    type="text"
+                />
+
                 <label htmlFor="">Upload File (image,pdf,doc) max upload size: 5mb</label>
                 <input type="file" onChange={onChangeFile} />
 

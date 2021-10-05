@@ -33,14 +33,14 @@ const PageModal: React.FC<iPageModal> = ({ show, setShow, page, setPage }) => {
         if (page.id === -1) {
             myapp.START_LOADING()
             setShow(false)
-            const result = await new ListAction<Page>(pagelistDispatch!).addData('client/create-page/', page)
+            const result = await new ListAction<Page>(pagelistDispatch!).addData('page/create-page/', page)
             myapp.SET_RESPONSE(result)
             myapp.STOP_LOADING()
         } else {
             //update value
             myapp.START_LOADING()
             setShow(false)
-            const result = await new ListAction<Page>(pagelistDispatch!).updateData('admin/update/page', page, "id")
+            const result = await new ListAction<Page>(pagelistDispatch!).updateData('page/update/page', page, "id")
             myapp.SET_RESPONSE(result)
             myapp.STOP_LOADING()
         }
@@ -65,6 +65,24 @@ const PageModal: React.FC<iPageModal> = ({ show, setShow, page, setPage }) => {
                 />
 
                 <Input
+                    name="title_sidebar"
+                    title="Page Title Sidebar"
+                    value={page.title_sidebar}
+                    onChange={onChange}
+                    disable={app?.loading!}
+                    type="text"
+                />
+                <small><a target="_blank" href="https://fontawesome.com/v4.7/icons/">Get Icons Here</a></small>
+                <Input
+                    name="icon"
+                    title="Page Icon"
+                    value={page.icon}
+                    onChange={onChange}
+                    disable={app?.loading!}
+                    type="text"
+                />
+
+                <Input
                     name="data_one"
                     title="Databox url 1."
                     value={page.data_one}
@@ -72,6 +90,7 @@ const PageModal: React.FC<iPageModal> = ({ show, setShow, page, setPage }) => {
                     disable={app?.loading!}
                     type="text"
                 />
+
                 <Input
                     name="data_two"
                     title="Databox url 2."
@@ -80,6 +99,7 @@ const PageModal: React.FC<iPageModal> = ({ show, setShow, page, setPage }) => {
                     disable={app?.loading!}
                     type="text"
                 />
+
                 <Input
                     name="data_three"
                     title="Databox url 3."

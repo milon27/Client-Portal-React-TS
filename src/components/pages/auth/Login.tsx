@@ -55,8 +55,8 @@ const Login = () => {
             }
             app.STOP_LOADING()
 
-        } catch (e) {
-            app.SET_RESPONSE(Response(false, "Sign In failed." + e.message, ColorType.DANGER))
+        } catch (err) {
+            app.SET_RESPONSE(Response(false, "Sign In failed." + (err as Error).message, ColorType.DANGER))
             app.START_LOADING()
         }
     }
@@ -82,9 +82,6 @@ const Login = () => {
                     <div className="d-flex flex-column">
                         <div className="d-flex justify-content-center mb-2">
                             <img src={logo} width={"52%"} alt="" />
-                        </div>
-                        <div className="d-flex justify-content-center">
-                            <h3>Login Now</h3>
                         </div>
                     </div>
 

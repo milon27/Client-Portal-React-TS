@@ -15,6 +15,8 @@ import AlertLoading from "../../layouts/AlertLoading";
 import { Button } from "react-bootstrap";
 import { TypeClickEvent, TypeOnChange } from "../../../utils/interface/CommonInterface";
 
+
+//not used
 const AdminLogin = () => {
 
     const { app } = useContext(StateContext)
@@ -58,7 +60,7 @@ const AdminLogin = () => {
             app.STOP_LOADING()
 
         } catch (e) {
-            app.SET_RESPONSE(Response(false, "Sign In failed." + e.message, ColorType.DANGER))
+            app.SET_RESPONSE(Response(false, "Sign In failed.", ColorType.DANGER))
             app.START_LOADING()
         }
     }

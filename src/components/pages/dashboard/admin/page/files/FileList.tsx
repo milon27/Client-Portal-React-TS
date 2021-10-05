@@ -22,10 +22,7 @@ const FileList = () => {
         const source = ListAction.getSource()
         const load = async () => {
             //http://localhost:2727/client/only-files/:pid
-            await new ListAction<PageFile>(filelistDispatch!).getAll('client/only-files/' + pid, source)
-
-            // const res = await AxiosHelper.getData('client/get-pages?cid=' + uid, source)
-            // console.log("test", res)
+            await new ListAction<PageFile>(filelistDispatch!).getAll('file/only-files/' + pid, source)
         }
         load()
         return () => {
@@ -35,7 +32,7 @@ const FileList = () => {
 
     //local state
     const [show, setShow] = useState(false)
-    const init = new PageFile(-1, parseInt(pid), "", "")
+    const init = new PageFile(-1, parseInt(pid), "", "", "")
     const [initFile, setInitFile] = useState(init)
 
     //local method
@@ -54,7 +51,7 @@ const FileList = () => {
             const appA = new AppAction(appDispatch!)
             appA.START_LOADING()
             //admin/delete/user/:uid
-            await new ListAction(filelistDispatch!).deleteData(`admin/delete/file/${file.id}`, "id", file, { old_url: file.url })
+            await new ListAction(filelistDispatch!).deleteData(`file/delete/file/${file.id}`, "id", file, { old_url: file.url })
             appA.STOP_LOADING()
         }
     }
@@ -85,6 +82,7 @@ const FileList = () => {
                                 <tr>
                                     <th>ID#</th>
                                     <th>File Title</th>
+                                    <th>File Desc.</th>
                                     <th>File URL</th>
                                     <th>Options</th>
                                 </tr>
@@ -96,6 +94,7 @@ const FileList = () => {
                                         <tr key={item.id}>
                                             <td>{item.id}</td>
                                             <td>{item.title}</td>
+                                            <td>{item.description}</td>
                                             <td>{item.url}</td>
                                             <td>
                                                 <button

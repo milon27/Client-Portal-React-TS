@@ -4,7 +4,8 @@ const URL = {
     ADMIN_HOME: "/dashboard",
     REGISTER: "/register",
 
-    FILE: "/file"
+    FILE: "/file",
+    SUPPORT: "/support"
 }
 
 export default URL

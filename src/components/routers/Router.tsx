@@ -8,6 +8,7 @@ import Register from './../pages/auth/Register';
 import AdminHome from './../pages/dashboard/admin/AdminHome';
 import PageList from './../pages/dashboard/admin/page/PageList';
 import FileList from './../pages/dashboard/admin/page/files/FileList';
+import SupportForm from './../pages/support/SupportForm';
 
 
 export default function Router() {
@@ -18,6 +19,7 @@ export default function Router() {
                 <Route exact path={URL.ADMIN_HOME} component={AdminHome} ></Route>
                 <Route path={URL.LOGIN} component={Login}></Route>
                 <Route path={URL.REGISTER} component={Register}></Route>
+                <Route path={URL.SUPPORT} component={SupportForm}></Route>
 
 
                 <Route exact path={URL.FILE + "/:id"} component={() => (<>file router.</>)}></Route>

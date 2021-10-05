@@ -1,29 +1,12 @@
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import IMG from '../../assets/img/support.jpeg'
 import URL from './../../utils/URL';
-import useLocalStorage from './../../utils/hooks/useLocalStorage';
-import User from './../../utils/models/User';
-import Define from '../../utils/Define';
-import { TypeClickEvent } from '../../utils/interface/CommonInterface';
-import AxiosHelper from './../../utils/AxiosHelper';
-
 interface iHeaderType {
     title: string
 }
-
 //todo : auth action / logout option
 
 const Header = ({ title }: iHeaderType) => {
-    const history = useHistory()
-
-    const [user, setUser] = useLocalStorage<User>(Define.AUTH_KEY)
-
-    const logout = async (e: TypeClickEvent) => {
-        //clear cookie
-        await AxiosHelper.simpleGet('auth/logout')
-        //clear localstate/storage
-        setUser(null)
-        history.push(URL.LOGIN)
-    }
 
     return (
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -46,36 +29,16 @@ const Header = ({ title }: iHeaderType) => {
                 {/* <!-- Nav Item - User Information --> */}
                 <li className="nav-item dropdown no-arrow">
 
-                    <Link to="#" className="nav-link dropdown-toggle" id="userDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">{user?.name}</span>
-                        <i className="fas fa-user-circle text-primary  " style={{ fontSize: 23 }}></i>
+                    <Link to={URL.SUPPORT} className="nav-link " >
+                        <div className="d-flex justify-content-start rounded border border-primary p-2">
+                            {/* <i className="fas fa-user-circle text-primary  mr-1" style={{ fontSize: 23 }}></i> */}
+                            <img className="mr-1 rounded-circle" src={IMG} alt="" style={{ width: 25 }} />
+                            <span className="mr-2 d-none d-lg-inline text-primary small">Support</span><span className="badge badge-pill badge-success">online</span>
+                        </div>
+
                     </Link>
 
-                    {/* <!-- Dropdown - User Information --> */}
-                    <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                        aria-labelledby="userDropdown">
 
-                        {/* <Link className="dropdown-item"
-                            to={{ pathname: `tel:${CUser.getCurrentuser() && CUser.getCurrentuser().phone}` }}
-                            target="_blank"
-                        >
-                            <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Phone: {CUser.getCurrentuser() && CUser.getCurrentuser().phone}
-                        </Link> 
-                        <div className="dropdown-divider"></div>*/}
-                        <Link className="dropdown-item" to={{ pathname: `mailto:${user?.email}` }}
-                            target="_top">
-                            <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Email: {user?.email}
-                        </Link>
-                        <div className="dropdown-divider"></div>
-
-                        <div className="dropdown-item" onClick={(e) => { logout(e) }} >
-                            <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Logout
-                        </div>
-                    </div>
                 </li>
 
             </ul>

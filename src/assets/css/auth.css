@@ -22,3 +22,28 @@
 .auth .custom-control-label {
   font-weight: 400;
 }
+
+.auth input{
+  border-radius: 0px;
+  padding: 1.25rem 0.75rem;
+}
+
+.auth .inner{
+  border-radius: 0;
+}
+
+.auth button{
+  border-radius: 0;
+}
+
+.auth .forgot-password{
+  margin-top:10px;
+}
+
+.justify-content-around{
+  padding-top: 10px;
+}
+
+.sidebar-dark .sidebar-brand{
+  background-color: white;
+}

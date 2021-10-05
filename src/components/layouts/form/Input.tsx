@@ -17,7 +17,7 @@ const Input: FC<iInput> = ({ title, value, name, onChange, disable = false, type
     return (
         <>
             <Form.Group>
-                <Form.Label>{title}</Form.Label>
+                {/* <Form.Label>{title}</Form.Label> */}
                 <Form.Control name={name} type={type} placeholder={title} value={value} disabled={disable} onChange={onChange} required={true} />
             </Form.Group>
         </>

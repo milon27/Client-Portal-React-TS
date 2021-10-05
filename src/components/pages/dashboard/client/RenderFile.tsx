@@ -39,7 +39,6 @@ const SingleImg: FC<iSingle> = ({ item, img, extention }) => {
                 e.preventDefault()
                 AxiosHelper.downloadFile(item.url, item.title.trim() + "." + extention)
             }}><i className="fas fa-download"></i></a>
-
         </div>
         {/* <a className="a_url" href={item.url} download>
             <img src={item.url} style={{ width: "130px", height: "190px" }} />
