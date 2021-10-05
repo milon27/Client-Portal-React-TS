@@ -55,7 +55,7 @@ export default function Sidebar({ logout }: iSidebar) {
                 <a className="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                     {/* rotate-n-15 */}
                     <div className="sidebar-brand-icon bg-white rounded">
-                        <img src={logo} style={{ width: "100%", height: "60px" }} alt="" />
+                        <img src={logo} style={{ width: "80%", height: "auto" }} alt="" />
                     </div>
                 </a>
 

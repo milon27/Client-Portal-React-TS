@@ -39,7 +39,7 @@ export default function AdminSidebar({ logout }: iAdminSidebar) {
                 <a className="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                     {/* rotate-n-15 */}
                     <div className="sidebar-brand-icon bg-white rounded">
-                        <img src={logo} style={{ width: "114.65px", height: "60px" }} alt="" />
+                        <img src={logo} style={{ width: "80%", height: "auto" }} alt="" />
                     </div>
                     {/* <div className="sidebar-brand-text "><sup>Client Portal</sup></div> */}
                 </a>

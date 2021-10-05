@@ -30,10 +30,10 @@ const Header = ({ title }: iHeaderType) => {
                 <li className="nav-item dropdown no-arrow">
 
                     <Link to={URL.SUPPORT} className="nav-link " >
-                        <div className="d-flex justify-content-start rounded border border-primary p-2">
+                        <div className="d-flex  justify-content-start rounded border border-primary align-items-center p-2">
                             {/* <i className="fas fa-user-circle text-primary  mr-1" style={{ fontSize: 23 }}></i> */}
                             <img className="mr-1 rounded-circle" src={IMG} alt="" style={{ width: 25 }} />
-                            <span className="mr-2 d-none d-lg-inline text-primary small">Support</span><span className="badge badge-pill badge-success">online</span>
+                            <span className="mr-2 text-primary small">Support</span><span className="badge badge-pill pb-1 badge-success">online</span>
                         </div>
 
                     </Link>
